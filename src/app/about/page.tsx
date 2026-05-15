@@ -15,9 +15,9 @@ const pardesLevels = [
     color: "text-blue-300",
     border: "border-blue-300/20",
     bg: "bg-blue-300/5",
-    desc: "The plain, literal, surface-level meaning of the text. What it actually says in its historical and grammatical context. This is the foundation — no interpretation is valid that contradicts the Peshat.",
+    desc: "The plain, literal, surface-level meaning of the text. What it actually says in its historical and grammatical context. This is the foundation. No interpretation is valid that contradicts the Peshat.",
     example:
-      '"The LORD is my shepherd; I shall not want." — The Psalmist is describing God using the metaphor of a shepherd who provides for and protects his flock.',
+      '"The LORD is my shepherd; I shall not want." The Psalmist is describing God using the metaphor of a shepherd who provides for and protects his flock.',
   },
   {
     letter: "ר",
@@ -26,9 +26,9 @@ const pardesLevels = [
     color: "text-purple-300",
     border: "border-purple-300/20",
     bg: "bg-purple-300/5",
-    desc: "The allegorical layer — where the text hints at deeper truths, types, and symbols. In Christian reading, this often reveals how the Old Testament points to Christ. The word Remez means 'hint' in Hebrew.",
+    desc: "The allegorical layer, where the text hints at deeper truths, types, and symbols. In Christian reading, this often reveals how the Old Testament points to Christ. The word Remez means 'hint' in Hebrew.",
     example:
-      '"The LORD is my shepherd" — points to Jesus who calls himself the Good Shepherd (John 10), the fulfillment of the Davidic promise and the one who lays down his life for his sheep.',
+      '"The LORD is my shepherd" points to Jesus who calls himself the Good Shepherd (John 10), the fulfillment of the Davidic promise and the one who lays down his life for his sheep.',
   },
   {
     letter: "ד",
@@ -37,7 +37,7 @@ const pardesLevels = [
     color: "text-green-300",
     border: "border-green-300/20",
     bg: "bg-green-300/5",
-    desc: "The homiletical and moral layer — the practical lesson for life and conduct. This is where scripture preaches. Derash asks: How does this change how I live? It's the application that comes from deeply searching the text.",
+    desc: "The homiletical and moral layer. The practical lesson for life and conduct. This is where scripture preaches. Derash asks: How does this change how I live? It is the application that comes from deeply searching the text.",
     example:
       '"I shall not want" — the moral lesson is one of contentment and radical trust. We are called to stop striving out of anxiety and learn to receive from God\'s provision rather than demand from circumstances.',
   },
@@ -48,7 +48,7 @@ const pardesLevels = [
     color: "text-amber-300",
     border: "border-amber-300/20",
     bg: "bg-amber-300/5",
-    desc: "The hidden, mystical layer — the deepest essence of what God is revealing about Himself. Sod is not speculation; it is the revelation of God's character that emerges when all other layers have been laid bare. It asks: What does this tell us about who God is?",
+    desc: "The hidden, mystical layer. The deepest essence of what God is revealing about Himself. Sod is not speculation; it is the revelation of God's character that emerges when all other layers have been laid bare. It asks: What does this tell us about who God is?",
     example:
       '"The LORD is my shepherd" — God\'s very nature is relational pursuit. He does not wait to be found; he seeks, guides, and restores. The Sod reveals that scarcity is fundamentally incompatible with the nature of God.',
   },
@@ -61,7 +61,7 @@ const fourLevels = [
     color: "text-amber-300",
     border: "border-amber-300/20",
     bg: "bg-amber-300/5",
-    desc: "The immediate, actionable calls to obedience. Tactics are not generic encouragements — they are specific actions the text demands. The tone is convicting: framed as things you already know but are not yet doing. Selah presents them as invitations to close the gap between knowledge and action.",
+    desc: "The immediate, actionable calls to obedience. Tactics are not generic encouragements. They are specific actions the text demands. The tone is convicting: framed as things you already know but are not yet doing. SelahPath presents them as invitations to close the gap between knowledge and action.",
   },
   {
     name: "Strategy",
@@ -69,7 +69,7 @@ const fourLevels = [
     color: "text-purple-300",
     border: "border-purple-300/20",
     bg: "bg-purple-300/5",
-    desc: "The sequence, timing, and order God is establishing. Many failures in the Christian life come not from doing the wrong thing, but from doing the right thing at the wrong time. Strategy identifies the divine order and shows what happens when it's violated — always with a concrete bad example.",
+    desc: "The sequence, timing, and order God is establishing. Many failures in the Christian life come not from doing the wrong thing, but from doing the right thing at the wrong time. Strategy identifies the divine order and shows what happens when it is violated, always with a concrete bad example.",
   },
   {
     name: "Principles",
@@ -77,7 +77,7 @@ const fourLevels = [
     color: "text-blue-300",
     border: "border-blue-300/20",
     bg: "bg-blue-300/5",
-    desc: "The universal laws embedded in the text. Principles are non-negotiable — they work for everyone, regardless of faith. The text always reveals both the positive result of alignment and the negative result of violation. Principles have no favorites.",
+    desc: "The universal laws embedded in the text. Principles are non-negotiable. They work for everyone, regardless of faith. The text always reveals both the positive result of alignment and the negative result of violation. Principles have no favorites.",
   },
   {
     name: "Essence",
@@ -85,7 +85,7 @@ const fourLevels = [
     color: "text-green-300",
     border: "border-green-300/20",
     bg: "bg-green-300/5",
-    desc: "The deepest layer — what this reveals about God's character, nature, and inclination toward humanity. Essence always includes a reflection question to help the reader locate themselves in the verse, and a practical way to embody what God is revealing about Himself.",
+    desc: "The deepest layer, revealing God's character, nature, and inclination toward humanity. Essence always includes a reflection question to help the reader locate themselves in the verse, and a practical way to embody what God is revealing about Himself.",
   },
 ];
 
@@ -128,13 +128,13 @@ export default function AboutPage() {
               Part One
             </p>
             <h2 className="font-serif text-3xl text-[#e8e0d0] mb-4">
-              PaRDeS — The Orchard of Meaning
+              PaRDeS: The Orchard of Meaning
             </h2>
             <p className="text-white/55 font-sans leading-relaxed">
               The word{" "}
               <span className="font-serif italic text-white/70">pardes</span> means &ldquo;orchard&rdquo; in
               Hebrew and is an acronym for the four levels of Jewish biblical interpretation. The
-              method teaches that every verse has not one meaning but four — each building on the
+              method teaches that every verse has not one meaning but four, each building on the
               last, none canceling the other.
             </p>
           </div>
@@ -165,7 +165,7 @@ export default function AboutPage() {
                     </p>
                     <div className="rounded-lg bg-black/30 border border-white/5 p-3">
                       <p className="text-[10px] text-white/30 font-sans uppercase tracking-widest mb-1">
-                        Example — Psalm 23:1
+                        Example: Psalm 23:1
                       </p>
                       <p className="text-sm text-white/60 font-serif italic leading-relaxed">
                         {level.example}
@@ -185,12 +185,12 @@ export default function AboutPage() {
               Part Two
             </p>
             <h2 className="font-serif text-3xl text-[#e8e0d0] mb-4">
-              Four Levels — From Text to Life
+              Four Levels: From Text to Life
             </h2>
             <p className="text-white/55 font-sans leading-relaxed">
               Where PaRDeS explores the depth of meaning, the Four Levels framework bridges
-              interpretation into transformation. Each level asks a different question of the text
-              — moving from action to sequence to law to essence.
+              interpretation into transformation. Each level asks a different question of the text,
+              moving from action to sequence to law to essence.
             </p>
           </div>
 
@@ -223,7 +223,7 @@ export default function AboutPage() {
               {
                 step: "1",
                 title: "Select your passage",
-                body: "Choose a book, chapter, and translation from the controls at the top. The Bible loads live — no account needed.",
+                body: "Choose a book, chapter, and translation from the controls at the top. The Bible loads live with no account needed.",
               },
               {
                 step: "2",

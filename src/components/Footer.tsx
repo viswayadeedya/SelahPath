@@ -8,9 +8,9 @@ const exploreLinks = [
 ];
 
 const translationLinks = [
-  { label: "KJV — King James Version", href: "/read?translation=kjv" },
-  { label: "WEB — World English Bible", href: "/read?translation=web" },
-  { label: "BBE — Bible in Basic English", href: "/read?translation=bbe" },
+  { label: "KJV (King James Version)", href: "/read?translation=kjv" },
+  { label: "WEB (World English Bible)", href: "/read?translation=web" },
+  { label: "BBE (Bible in Basic English)", href: "/read?translation=bbe" },
 ];
 
 const linkClass =
@@ -52,7 +52,7 @@ export default function Footer() {
           </p>
 
           <p className="font-sans text-[13px] leading-relaxed text-[rgba(232,224,208,0.5)] max-w-xs">
-            Revealing the original Hebrew and Greek depth of every verse — through PaRDeS and the
+            Revealing the original Hebrew and Greek depth of every verse through PaRDeS and the
             four levels of understanding.
           </p>
         </div>

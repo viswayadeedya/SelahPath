@@ -8,7 +8,7 @@ const dimensions = [
     color: "text-blue-300",
     borderColor: "border-blue-300/20",
     bg: "bg-blue-300/5",
-    desc: "Uncover Hebrew & Greek roots with Strong's numbers, transliteration, and both literal and contextual meanings — revealing what translation alone can never show.",
+    desc: "Uncover Hebrew and Greek roots with Strong's numbers, transliteration, and both literal and contextual meanings. What translation alone can never show you.",
   },
   {
     letter: "פ",
@@ -16,7 +16,7 @@ const dimensions = [
     color: "text-purple-300",
     borderColor: "border-purple-300/20",
     bg: "bg-purple-300/5",
-    desc: "The ancient rabbinic method: Peshat (literal), Remez (allegorical), Derash (homiletical), and Sod (hidden) — four dimensions of a single verse.",
+    desc: "The ancient rabbinic method: Peshat (literal), Remez (allegorical), Derash (homiletical), and Sod (hidden). Four dimensions of a single verse.",
   },
   {
     letter: "ד",
@@ -24,7 +24,7 @@ const dimensions = [
     color: "text-green-300",
     borderColor: "border-green-300/20",
     bg: "bg-green-300/5",
-    desc: "Tactics, Strategy, Principles, and Essence — a framework for translating scripture into convicting, practical, daily transformation.",
+    desc: "Tactics, Strategy, Principles, and Essence. A framework for translating scripture into convicting, practical, daily transformation.",
   },
   {
     letter: "ע",
@@ -32,7 +32,7 @@ const dimensions = [
     color: "text-amber-300",
     borderColor: "border-amber-300/20",
     bg: "bg-amber-300/5",
-    desc: "A synthesized passage that surfaces what English-only readers miss — the cultural, historical, and theological depth beneath every word.",
+    desc: "A synthesized passage that surfaces what English-only readers miss: the cultural, historical, and theological depth beneath every word.",
   },
 ];
 
@@ -45,7 +45,7 @@ const features = [
   {
     icon: "⚡",
     title: "Instant Cache",
-    desc: "Analysis is permanently stored. Every study is instant the second time — no waiting.",
+    desc: "Analysis is permanently stored. Every study is instant the second time. No waiting.",
   },
   {
     icon: "◎",
@@ -112,8 +112,8 @@ export default function Home() {
           </p>
 
           <p className="text-base md:text-lg font-sans text-white/50 max-w-xl mx-auto leading-relaxed mb-12">
-            Read scripture slowly. Click any verse to unlock its full depth — original languages,
-            ancient interpretation frameworks, and practical transformation in seconds.
+            Read scripture slowly. Click any verse to unlock its full depth across original languages,
+            ancient interpretation frameworks, and practical transformation.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
