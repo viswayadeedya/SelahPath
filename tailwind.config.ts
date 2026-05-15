@@ -9,8 +9,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        parchment: "#e8e0d0",
+        gold: "#c9a84c",
+        "bg-base": "#0a0a0f",
+        "bg-surface": "#12121a",
+        "bg-card": "#1a1a2e",
+      },
+      fontFamily: {
+        serif: ["Georgia", "Times New Roman", "serif"],
+        sans: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "system-ui", "sans-serif"],
+      },
+      animation: {
+        "fade-in": "fadeIn 0.4s ease-out forwards",
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: "0", transform: "translateY(8px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
     },
   },
