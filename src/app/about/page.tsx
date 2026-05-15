@@ -112,7 +112,7 @@ export default function AboutPage() {
             The Method
           </p>
           <h1 className="font-serif text-4xl md:text-5xl text-[#e8e0d0] mb-6">
-            How Selah reads scripture
+            Selah Illuminates Sacred Scripture
           </h1>
           <p className="text-white/50 font-sans leading-relaxed">
             Selah combines two ancient and proven frameworks for biblical interpretation: the

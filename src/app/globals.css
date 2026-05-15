@@ -83,6 +83,15 @@ body {
   animation: fadeIn 0.4s ease-out forwards;
 }
 
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 @layer utilities {
   .text-parchment {
     color: #e8e0d0;
