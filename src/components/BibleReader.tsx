@@ -16,6 +16,7 @@ export default function BibleReader() {
   const [book, setBook] = useState("john");
   const [chapter, setChapter] = useState(3);
   const [translation, setTranslation] = useState<Translation>("kjv");
+  const [ready, setReady] = useState(false);
   const [passage, setPassage] = useState<BiblePassage | null>(null);
   const [loadingPassage, setLoadingPassage] = useState(false);
   const [passageError, setPassageError] = useState<string | null>(null);
@@ -35,6 +36,7 @@ export default function BibleReader() {
     if (savedBook) setBook(savedBook);
     if (savedChapter) setChapter(parseInt(savedChapter));
     if (savedTranslation) setTranslation(savedTranslation as Translation);
+    setReady(true);
   }, []);
 
   // Persist whenever the user changes book, chapter, or translation
@@ -55,6 +57,7 @@ export default function BibleReader() {
   const chaptersArray = Array.from({ length: maxChapters }, (_, i) => i + 1);
 
   useEffect(() => {
+    if (!ready) return;
     async function loadPassage() {
       setLoadingPassage(true);
       setPassageError(null);
@@ -73,7 +76,7 @@ export default function BibleReader() {
       }
     }
     loadPassage();
-  }, [book, chapter, translation]);
+  }, [book, chapter, translation, ready]);
 
   const triggerAnalysis = useCallback(
     (verses: SelectedVerse[], regenerate = false) => {
