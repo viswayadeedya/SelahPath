@@ -91,10 +91,10 @@ export default function Home() {
         </div>
 
         {/* Decorative Hebrew letters */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-          <span className="absolute top-20 left-10 text-8xl text-white/2 font-serif">בְּרֵאשִׁית</span>
-          <span className="absolute bottom-32 right-10 text-6xl text-white/2 font-serif">אֱלֹהִים</span>
-          <span className="absolute top-40 right-20 text-5xl text-white/2 font-serif">שָׁלוֹם</span>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
+          <span className="absolute top-8 left-3 text-[clamp(1rem,12vw,5rem)] text-white/5 md:text-white/[8] font-serif leading-none">בְּרֵאשִׁית</span>
+          <span className="absolute bottom-8 right-3 text-[clamp(1rem,10vw,4rem)] text-white/5 md:text-white/[8] font-serif leading-none">אֱלֹהִים</span>
+          <span className="absolute top-8 right-3 text-[clamp(0.8rem,8vw,3rem)] text-white/5 md:text-white/[8] font-serif leading-none">שָׁלוֹם</span>
         </div>
 
         <div className="relative z-10 max-w-3xl mx-auto">
@@ -103,7 +103,7 @@ export default function Home() {
             AI-Powered Bible Study
           </div>
 
-          <h1 className="font-serif text-6xl md:text-8xl text-[#e8e0d0] mb-6 leading-none tracking-tight">
+          <h1 className="font-serif text-[#e8e0d0] mb-6 leading-none tracking-tight" style={{ fontSize: "clamp(2.25rem, 9vw, 6rem)" }}>
             SelahPath™
           </h1>
 

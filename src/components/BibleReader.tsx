@@ -27,6 +27,26 @@ export default function BibleReader() {
   const [isCached, setIsCached] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
+  // Restore last-read position after mount (avoids SSR/hydration mismatch)
+  useEffect(() => {
+    const savedBook = localStorage.getItem("selah_book");
+    const savedChapter = localStorage.getItem("selah_chapter");
+    const savedTranslation = localStorage.getItem("selah_translation");
+    if (savedBook) setBook(savedBook);
+    if (savedChapter) setChapter(parseInt(savedChapter));
+    if (savedTranslation) setTranslation(savedTranslation as Translation);
+  }, []);
+
+  // Persist whenever the user changes book, chapter, or translation
+  // hasMounted guard prevents overwriting localStorage with defaults on the first render
+  const hasMounted = useRef(false);
+  useEffect(() => {
+    if (!hasMounted.current) { hasMounted.current = true; return; }
+    localStorage.setItem("selah_book", book);
+    localStorage.setItem("selah_chapter", String(chapter));
+    localStorage.setItem("selah_translation", translation);
+  }, [book, chapter, translation]);
+
   const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastAnalyzedKey = useRef<string>("");
 
@@ -285,7 +305,7 @@ export default function BibleReader() {
                 <p className="text-red-400/70 text-sm font-serif">{passageError}</p>
               </div>
             ) : passage ? (
-              <div className="text-[#e8e0d0] text-base md:text-[1.05rem] leading-[2.1] font-serif">
+              <div className={`text-[#e8e0d0] text-base md:text-[1.05rem] leading-[2.1] font-serif${translation === "irvtel" ? " telugu-verse" : ""}`}>
                 {passage.verses.map((verse) => (
                   <VerseCard
                     key={verse.verse}
@@ -346,7 +366,12 @@ export default function BibleReader() {
         analysis={analysis}
         selectedVerses={selectedVerses}
         isCached={isCached}
-        onClose={() => setSidebarOpen(false)}
+        onClose={() => {
+          if (debounceTimer.current) clearTimeout(debounceTimer.current);
+          setSelectedVerses([]);
+          setSidebarOpen(false);
+          lastAnalyzedKey.current = "";
+        }}
         onRegenerate={handleRegenerate}
       />
     </div>

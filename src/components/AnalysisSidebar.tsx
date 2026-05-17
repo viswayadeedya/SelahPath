@@ -221,11 +221,56 @@ export default function AnalysisSidebar({
                           </span>
                           <span className="text-white/70 leading-relaxed">{word.contextual}</span>
                         </div>
+                        {word.root && (
+                          <div className="flex gap-2 text-xs">
+                            <span className="text-white/30 font-sans uppercase tracking-wide text-[10px] w-14 flex-shrink-0 pt-0.5">
+                              Root
+                            </span>
+                            <span className="text-white/70 leading-relaxed">{word.root}</span>
+                          </div>
+                        )}
+                        {word.letter_breakdown && (
+                          <div className="mt-2 rounded-md bg-amber-400/5 border border-amber-400/10 p-2">
+                            <span className="text-[10px] text-amber-400/50 font-sans uppercase tracking-wide block mb-1">
+                              Letters
+                            </span>
+                            <p className="text-xs text-white/60 leading-relaxed font-serif italic">
+                              {word.letter_breakdown}
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
                 </div>
               </CollapsibleSection>
+
+              {/* Proper Nouns — only rendered when present */}
+              {analysis.proper_nouns && analysis.proper_nouns.length > 0 && (
+                <CollapsibleSection title="Proper Nouns" badge={`${analysis.proper_nouns.length}`}>
+                  <div className="space-y-3">
+                    {analysis.proper_nouns.map((noun, i) => (
+                      <div key={i} className="rounded-lg bg-black/30 border border-white/5 p-3">
+                        <p className="font-serif text-base text-[#e8e0d0] mb-1">{noun.name}</p>
+                        <div className="space-y-1.5">
+                          <div className="flex gap-2 text-xs">
+                            <span className="text-white/30 font-sans uppercase tracking-wide text-[10px] w-16 flex-shrink-0 pt-0.5">
+                              Hebrew
+                            </span>
+                            <span className="text-white/70 leading-relaxed">{noun.hebrew_meaning}</span>
+                          </div>
+                          <div className="flex gap-2 text-xs">
+                            <span className="text-white/30 font-sans uppercase tracking-wide text-[10px] w-16 flex-shrink-0 pt-0.5">
+                              Significance
+                            </span>
+                            <span className="text-white/70 leading-relaxed">{noun.cultural_significance}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CollapsibleSection>
+              )}
 
               {/* PaRDeS */}
               <CollapsibleSection title="PaRDeS Levels">
@@ -366,7 +411,17 @@ function formatAnalysisAsText(analysis: VerseAnalysis): string {
     lines.push(`\n${w.word} (${w.transliteration}) [${w.strongs}]`);
     lines.push(`  Literal: ${w.literal}`);
     lines.push(`  Contextual: ${w.contextual}`);
+    if (w.root) lines.push(`  Root: ${w.root}`);
+    if (w.letter_breakdown) lines.push(`  Letters: ${w.letter_breakdown}`);
   });
+  if (analysis.proper_nouns && analysis.proper_nouns.length > 0) {
+    lines.push("\n\n=== PROPER NOUNS ===");
+    analysis.proper_nouns.forEach((n) => {
+      lines.push(`\n${n.name}`);
+      lines.push(`  Hebrew Meaning: ${n.hebrew_meaning}`);
+      lines.push(`  Significance: ${n.cultural_significance}`);
+    });
+  }
   lines.push("\n\n=== PaRDeS LEVELS ===");
   lines.push(`\nPeshat:\n${analysis.pardes?.peshat}`);
   lines.push(`\nRemez:\n${analysis.pardes?.remez}`);

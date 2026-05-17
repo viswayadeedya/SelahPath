@@ -26,6 +26,14 @@ export interface OriginalLanguageWord {
   strongs: string;
   literal: string;
   contextual: string;
+  root?: string;
+  letter_breakdown?: string;
+}
+
+export interface ProperNoun {
+  name: string;
+  hebrew_meaning: string;
+  cultural_significance: string;
 }
 
 export interface PaRDeS {
@@ -56,12 +64,13 @@ export interface FourLevels {
 
 export interface VerseAnalysis {
   original_languages: OriginalLanguageWord[];
+  proper_nouns?: ProperNoun[];
   pardes: PaRDeS;
   four_levels: FourLevels;
   deep_reading: string;
 }
 
-export type Translation = "kjv" | "web" | "bbe" | "clementine" | "almeida";
+export type Translation = "kjv" | "web" | "bbe" | "clementine" | "almeida" | "irvtel";
 
 export interface TranslationOption {
   id: Translation;
@@ -73,6 +82,7 @@ export const TRANSLATIONS: TranslationOption[] = [
   { id: "kjv", label: "KJV", fullName: "King James Version" },
   { id: "web", label: "WEB", fullName: "World English Bible" },
   { id: "bbe", label: "BBE", fullName: "Bible in Basic English" },
+  { id: "irvtel", label: "IRVTel", fullName: "Telugu Indian Revised Version" },
 ];
 
 export const BOOKS = [

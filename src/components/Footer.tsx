@@ -11,6 +11,7 @@ const translationLinks = [
   { label: "KJV (King James Version)", href: "/read?translation=kjv" },
   { label: "WEB (World English Bible)", href: "/read?translation=web" },
   { label: "BBE (Bible in Basic English)", href: "/read?translation=bbe" },
+  { label: "IRVTel (Telugu Indian Revised Version)", href: "/read?translation=irvtel" },
 ];
 
 const linkClass =
