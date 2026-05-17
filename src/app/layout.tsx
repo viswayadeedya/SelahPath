@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "SelahPath™ — Deep Bible Study",
   description:
-    "Read scripture deeply. Select verses to unlock AI-powered analysis across Original Languages, PaRDeS levels, and Myron's Four Levels of understanding.",
+    "Read scripture deeply. Select verses to unlock AI-powered analysis across Original Languages, PaRDeS levels, and the Four Levels of understanding.",
   keywords: ["Bible study", "Scripture", "PaRDeS", "Hebrew", "Greek", "AI analysis"],
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],

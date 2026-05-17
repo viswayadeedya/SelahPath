@@ -10,6 +10,7 @@ interface AnalysisSidebarProps {
   analysis: VerseAnalysis | null;
   selectedVerses: SelectedVerse[];
   isCached: boolean;
+  translation: string;
   onClose: () => void;
   onRegenerate: () => void;
 }
@@ -87,10 +88,42 @@ export default function AnalysisSidebar({
   analysis,
   selectedVerses,
   isCached,
+  translation,
   onClose,
   onRegenerate,
 }: AnalysisSidebarProps) {
   const [copied, setCopied] = useState(false);
+  const tel = translation === "irvtel";
+
+  const ui = {
+    header:          tel ? "లోతైన అధ్యయనం"              : "Deep Study",
+    noVerses:        tel ? "అధ్యయనం ప్రారంభించడానికి వచనాలు ఎంచుకోండి" : "Select verses to begin your study",
+    words:           (n: number) => tel ? `${n} పదాలు`   : `${n} words`,
+    origLang:        tel ? "మూల భాషలు"                  : "Original Languages",
+    literal:         tel ? "అక్షరార్థం"                  : "Literal",
+    context:         tel ? "సందర్భం"                    : "Context",
+    root:            tel ? "మూలం"                       : "Root",
+    letters:         tel ? "అక్షరాలు"                   : "Letters",
+    properNouns:     tel ? "సరిపేర్లు"                  : "Proper Nouns",
+    hebrew:          tel ? "హెబ్రీ"                     : "Hebrew",
+    significance:    tel ? "ప్రాముఖ్యత"                 : "Significance",
+    pardes:          tel ? "పర్డెస్ స్థాయిలు"            : "PaRDeS Levels",
+    pardesSubs:      tel
+      ? { peshat: "అక్షరార్థం", remez: "రూపకం", derash: "నీతి బోధన", sod: "దాగిన అర్థం" }
+      : { peshat: "Literal",    remez: "Allegorical", derash: "Homiletical", sod: "Hidden" },
+    fourLevels:      tel ? "నాలుగు స్థాయిలు"             : "Four Levels",
+    tactics:         tel ? "వ్యూహాలు — ఏమి చేయాలి"       : "Tactics — What to Do",
+    strategy:        tel ? "వ్యూహరచన — క్రమం & సమయం"    : "Strategy — Sequence & Timing",
+    principles:      tel ? "సూత్రాలు — సార్వత్రిక నియమాలు" : "Principles — Universal Laws",
+    law:             tel ? "నియమం"                      : "Law",
+    aligned:         tel ? "✓ అనుసరించినప్పుడు"          : "✓ Aligned",
+    violated:        tel ? "✗ ఉల్లంఘించినప్పుడు"         : "✗ Violated",
+    essence:         tel ? "సారాంశం — దేవుని స్వభావం"    : "Essence — God's Character",
+    character:       tel ? "స్వభావం"                    : "Character",
+    reflection:      tel ? "ఆత్మపరిశీలన ప్రశ్న"          : "Reflection Question",
+    embodiment:      tel ? "ఆచరణ"                      : "Embodiment",
+    deepReading:     tel ? "లోతైన పఠనం"                 : "Deep Reading",
+  };
 
   const handleCopy = () => {
     if (!analysis) return;
@@ -146,10 +179,10 @@ export default function AnalysisSidebar({
         <div className="flex items-start justify-between px-4 py-3 border-b border-white/10 flex-shrink-0">
           <div className="flex-1 min-w-0">
             <h2 className="text-xs uppercase tracking-widest text-amber-400/70 font-sans mb-0.5">
-              Deep Study
+              {ui.header}
             </h2>
             <p className="text-sm font-serif text-[#e8e0d0] truncate">
-              {selectedVerses.length > 0 ? verseLabel : "No verses selected"}
+              {selectedVerses.length > 0 ? verseLabel : ui.noVerses}
             </p>
             {isCached && !isLoading && (
               <span className="text-[10px] text-green-400/60 font-mono">⚡ cached</span>
@@ -191,8 +224,8 @@ export default function AnalysisSidebar({
             <>
               {/* Original Languages */}
               <CollapsibleSection
-                title="Original Languages"
-                badge={`${analysis.original_languages?.length || 0} words`}
+                title={ui.origLang}
+                badge={ui.words(analysis.original_languages?.length || 0)}
               >
                 <div className="space-y-3">
                   {analysis.original_languages?.map((word, i) => (
@@ -211,20 +244,20 @@ export default function AnalysisSidebar({
                       <div className="space-y-1.5">
                         <div className="flex gap-2 text-xs">
                           <span className="text-white/30 font-sans uppercase tracking-wide text-[10px] w-14 flex-shrink-0 pt-0.5">
-                            Literal
+                            {ui.literal}
                           </span>
                           <span className="text-white/70 leading-relaxed">{word.literal}</span>
                         </div>
                         <div className="flex gap-2 text-xs">
                           <span className="text-white/30 font-sans uppercase tracking-wide text-[10px] w-14 flex-shrink-0 pt-0.5">
-                            Context
+                            {ui.context}
                           </span>
                           <span className="text-white/70 leading-relaxed">{word.contextual}</span>
                         </div>
                         {word.root && (
                           <div className="flex gap-2 text-xs">
                             <span className="text-white/30 font-sans uppercase tracking-wide text-[10px] w-14 flex-shrink-0 pt-0.5">
-                              Root
+                              {ui.root}
                             </span>
                             <span className="text-white/70 leading-relaxed">{word.root}</span>
                           </div>
@@ -232,7 +265,7 @@ export default function AnalysisSidebar({
                         {word.letter_breakdown && (
                           <div className="mt-2 rounded-md bg-amber-400/5 border border-amber-400/10 p-2">
                             <span className="text-[10px] text-amber-400/50 font-sans uppercase tracking-wide block mb-1">
-                              Letters
+                              {ui.letters}
                             </span>
                             <p className="text-xs text-white/60 leading-relaxed font-serif italic">
                               {word.letter_breakdown}
@@ -247,7 +280,7 @@ export default function AnalysisSidebar({
 
               {/* Proper Nouns — only rendered when present */}
               {analysis.proper_nouns && analysis.proper_nouns.length > 0 && (
-                <CollapsibleSection title="Proper Nouns" badge={`${analysis.proper_nouns.length}`}>
+                <CollapsibleSection title={ui.properNouns} badge={`${analysis.proper_nouns.length}`}>
                   <div className="space-y-3">
                     {analysis.proper_nouns.map((noun, i) => (
                       <div key={i} className="rounded-lg bg-black/30 border border-white/5 p-3">
@@ -255,13 +288,13 @@ export default function AnalysisSidebar({
                         <div className="space-y-1.5">
                           <div className="flex gap-2 text-xs">
                             <span className="text-white/30 font-sans uppercase tracking-wide text-[10px] w-16 flex-shrink-0 pt-0.5">
-                              Hebrew
+                              {ui.hebrew}
                             </span>
                             <span className="text-white/70 leading-relaxed">{noun.hebrew_meaning}</span>
                           </div>
                           <div className="flex gap-2 text-xs">
                             <span className="text-white/30 font-sans uppercase tracking-wide text-[10px] w-16 flex-shrink-0 pt-0.5">
-                              Significance
+                              {ui.significance}
                             </span>
                             <span className="text-white/70 leading-relaxed">{noun.cultural_significance}</span>
                           </div>
@@ -273,9 +306,9 @@ export default function AnalysisSidebar({
               )}
 
               {/* PaRDeS */}
-              <CollapsibleSection title="PaRDeS Levels">
+              <CollapsibleSection title={ui.pardes}>
                 <div className="space-y-4">
-                  {PARDES_META.map(({ key, label, letter, sub, color }) => (
+                  {PARDES_META.map(({ key, label, letter, color }) => (
                     <div key={key} className="flex gap-3">
                       <div className="flex-shrink-0 w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-lg bg-black/40 border border-white/5">
                         <span className={`text-xl md:text-2xl font-serif ${color} leading-none`}>
@@ -285,7 +318,7 @@ export default function AnalysisSidebar({
                       <div className="flex-1 min-w-0">
                         <div className="flex items-baseline gap-1.5 mb-1">
                           <span className={`text-xs font-semibold ${color}`}>{label}</span>
-                          <span className="text-[10px] text-white/30 font-sans">{sub}</span>
+                          <span className="text-[10px] text-white/30 font-sans">{ui.pardesSubs[key as keyof typeof ui.pardesSubs]}</span>
                         </div>
                         <p className="text-sm text-white/80 leading-relaxed font-serif">
                           {analysis.pardes?.[key as keyof typeof analysis.pardes]}
@@ -297,11 +330,11 @@ export default function AnalysisSidebar({
               </CollapsibleSection>
 
               {/* Four Levels */}
-              <CollapsibleSection title="Four Levels">
+              <CollapsibleSection title={ui.fourLevels}>
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-[11px] uppercase tracking-widest text-amber-400/60 font-sans mb-2">
-                      Tactics — What to Do
+                      {ui.tactics}
                     </h4>
                     <p className="text-sm text-white/80 leading-relaxed font-serif bg-black/20 rounded-lg p-3 border border-white/5">
                       {analysis.four_levels?.tactics}
@@ -310,7 +343,7 @@ export default function AnalysisSidebar({
 
                   <div>
                     <h4 className="text-[11px] uppercase tracking-widest text-purple-400/60 font-sans mb-2">
-                      Strategy — Sequence &amp; Timing
+                      {ui.strategy}
                     </h4>
                     <p className="text-sm text-white/80 leading-relaxed font-serif bg-black/20 rounded-lg p-3 border border-white/5">
                       {analysis.four_levels?.strategy}
@@ -319,19 +352,19 @@ export default function AnalysisSidebar({
 
                   <div>
                     <h4 className="text-[11px] uppercase tracking-widest text-blue-400/60 font-sans mb-2">
-                      Principles — Universal Laws
+                      {ui.principles}
                     </h4>
                     <div className="bg-black/20 rounded-lg p-3 border border-white/5 space-y-2.5">
                       <p className="text-sm text-white/80 font-serif leading-relaxed">
                         <span className="text-[10px] text-white/30 font-sans uppercase tracking-wide block mb-0.5">
-                          Law
+                          {ui.law}
                         </span>
                         {analysis.four_levels?.principles?.law}
                       </p>
                       <div className="border-t border-white/5 pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <div>
                           <span className="text-[10px] text-green-400/50 font-sans uppercase tracking-wide block mb-0.5">
-                            ✓ Aligned
+                            {ui.aligned}
                           </span>
                           <p className="text-xs text-white/70 font-serif leading-relaxed">
                             {analysis.four_levels?.principles?.positive}
@@ -339,7 +372,7 @@ export default function AnalysisSidebar({
                         </div>
                         <div>
                           <span className="text-[10px] text-red-400/50 font-sans uppercase tracking-wide block mb-0.5">
-                            ✗ Violated
+                            {ui.violated}
                           </span>
                           <p className="text-xs text-white/70 font-serif leading-relaxed">
                             {analysis.four_levels?.principles?.negative}
@@ -351,12 +384,12 @@ export default function AnalysisSidebar({
 
                   <div>
                     <h4 className="text-[11px] uppercase tracking-widest text-amber-400/60 font-sans mb-2">
-                      Essence — God&apos;s Character
+                      {ui.essence}
                     </h4>
                     <div className="bg-black/20 rounded-lg p-3 border border-white/5 space-y-3">
                       <div>
                         <span className="text-[10px] text-white/30 font-sans uppercase tracking-wide block mb-0.5">
-                          Character
+                          {ui.character}
                         </span>
                         <p className="text-sm text-white/80 font-serif leading-relaxed">
                           {analysis.four_levels?.essence?.character}
@@ -364,7 +397,7 @@ export default function AnalysisSidebar({
                       </div>
                       <div className="border-t border-white/5 pt-2">
                         <span className="text-[10px] text-amber-400/50 font-sans uppercase tracking-wide block mb-1">
-                          Reflection Question
+                          {ui.reflection}
                         </span>
                         <p className="text-sm text-amber-100/80 font-serif italic leading-relaxed">
                           {analysis.four_levels?.essence?.reflection}
@@ -372,7 +405,7 @@ export default function AnalysisSidebar({
                       </div>
                       <div className="border-t border-white/5 pt-2">
                         <span className="text-[10px] text-white/30 font-sans uppercase tracking-wide block mb-0.5">
-                          Embodiment
+                          {ui.embodiment}
                         </span>
                         <p className="text-sm text-white/80 font-serif leading-relaxed">
                           {analysis.four_levels?.essence?.embodiment}
@@ -384,7 +417,7 @@ export default function AnalysisSidebar({
               </CollapsibleSection>
 
               {/* Deep Reading */}
-              <CollapsibleSection title="Deep Reading">
+              <CollapsibleSection title={ui.deepReading}>
                 <p className="text-sm text-white/85 font-serif leading-relaxed italic">
                   {analysis.deep_reading}
                 </p>
@@ -394,7 +427,7 @@ export default function AnalysisSidebar({
             <div className="flex flex-col items-center justify-center h-48 text-center">
               <p className="text-4xl mb-4 opacity-30">✦</p>
               <p className="text-white/30 text-sm font-serif">
-                Select verses to begin your study
+                {ui.noVerses}
               </p>
             </div>
           )}

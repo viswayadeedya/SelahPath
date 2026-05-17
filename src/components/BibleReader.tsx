@@ -113,7 +113,9 @@ export default function BibleReader() {
     (verse: Verse) => {
       setSelectedVerses((prev) => {
         const exists = prev.find((v) => v.verseNumber === verse.verse);
-        const bookName = currentBook?.name || book;
+        const bookName = translation === "irvtel"
+          ? (currentBook?.teluguName || currentBook?.name || book)
+          : (currentBook?.name || book);
         const ref = `${bookName} ${chapter}:${verse.verse}`;
 
         let next: SelectedVerse[];
@@ -214,7 +216,7 @@ export default function BibleReader() {
                 >
                   {TRANSLATIONS.map((t) => (
                     <option key={t.id} value={t.id}>
-                      {t.label} — {t.fullName}
+                      {t.label} — {t.nativeName ?? t.fullName}
                     </option>
                   ))}
                 </select>
@@ -229,14 +231,18 @@ export default function BibleReader() {
                   onChange={(e) => { setBook(e.target.value); setChapter(1); }}
                   className={`${SELECT_CLS} max-w-[140px]`}
                 >
-                  <optgroup label="Old Testament">
+                  <optgroup label={translation === "irvtel" ? "పాత నిబంధన" : "Old Testament"}>
                     {BOOKS.filter((b) => b.testament === "OT").map((b) => (
-                      <option key={b.id} value={b.id}>{b.name}</option>
+                      <option key={b.id} value={b.id}>
+                        {translation === "irvtel" ? b.teluguName : b.name}
+                      </option>
                     ))}
                   </optgroup>
-                  <optgroup label="New Testament">
+                  <optgroup label={translation === "irvtel" ? "క్రొత్త నిబంధన" : "New Testament"}>
                     {BOOKS.filter((b) => b.testament === "NT").map((b) => (
-                      <option key={b.id} value={b.id}>{b.name}</option>
+                      <option key={b.id} value={b.id}>
+                        {translation === "irvtel" ? b.teluguName : b.name}
+                      </option>
                     ))}
                   </optgroup>
                 </select>
@@ -280,7 +286,7 @@ export default function BibleReader() {
         {/* Chapter heading */}
         <div className="flex-shrink-0 text-center py-4 md:py-6 px-4 border-b border-white/5">
           <h1 className="font-serif text-xl md:text-2xl text-[#e8e0d0]">
-            {currentBook?.name} {chapter}
+            {translation === "irvtel" ? currentBook?.teluguName : currentBook?.name} {chapter}
           </h1>
           <p className="text-xs text-white/30 font-sans mt-1 uppercase tracking-widest">
             {TRANSLATIONS.find((t) => t.id === translation)?.fullName}
@@ -366,6 +372,7 @@ export default function BibleReader() {
         analysis={analysis}
         selectedVerses={selectedVerses}
         isCached={isCached}
+        translation={translation}
         onClose={() => {
           if (debounceTimer.current) clearTimeout(debounceTimer.current);
           setSelectedVerses([]);

@@ -49,8 +49,8 @@ const features = [
   },
   {
     icon: "◎",
-    title: "Three Translations",
-    desc: "Switch between KJV, WEB, and BBE. The analysis adapts to your translation.",
+    title: "Four Translations",
+    desc: "Switch between KJV, WEB, BBE, and IRVTel (Telugu). The analysis adapts to your translation.",
   },
   {
     icon: "☽",

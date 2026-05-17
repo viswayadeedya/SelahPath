@@ -116,7 +116,7 @@ export default function AboutPage() {
           </h1>
           <p className="text-white/50 font-sans leading-relaxed">
             Selah combines two ancient and proven frameworks for biblical interpretation: the
-            rabbinic PaRDeS method and Myron&apos;s Four Levels. Together, they reveal what any single
+            rabbinic PaRDeS method and the Four Levels framework. Together, they reveal what any single
             reading misses.
           </p>
         </div>
